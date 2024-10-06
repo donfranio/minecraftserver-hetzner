@@ -33,7 +33,7 @@ gestartet werden.
 cd ~/Software/salt-cloud
 salt-cloud -p mc-inst mc1
 IP=$(salt-cloud -f list_nodes hetzner --output yaml | yq -r '."hetzner-cloud-config".hetzner.mc1.public_ips.ipv4')
-ssh-keygen -f "~/.ssh/known_hosts" -R "$IP"
+ssh-keygen -f ~/.ssh/known_hosts -R "$IP"
 while ! ssh -o UpdateHostKeys=true -o StrictHostKeyChecking=false root@$IP true 2>/dev/null; do echo -n .; sleep 1; done
 ./create-roster.sh
 salt-ssh mc1 state.apply
@@ -45,5 +45,5 @@ echo "IP ist $IP"
 ```
 salt-cloud -yd mc1
 hcloud volume detach minecraftworlds
-ssh-keygen -f "~/.ssh/known_hosts" -R "$IP"
+ssh-keygen -f ~/.ssh/known_hosts -R "$IP"
 ```
