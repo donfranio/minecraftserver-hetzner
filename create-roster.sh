@@ -1,0 +1,1 @@
+salt-cloud -f list_nodes hetzner --output yaml | yq -y '."hetzner-cloud-config".hetzner | to_entries | map(select( .value.state == "running")) | from_entries | with_entries(.value = { host: .value.public_ips.ipv4 })' > config/roster

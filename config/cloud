@@ -1,0 +1,7 @@
+root_dir: ~/Software/salt-cloud
+
+log_file: logs/cloud.log
+pid_file: run/cloud.pid
+ssh_log_file: logs/ssh
+cachedir: cache
+pki_dir: pki
