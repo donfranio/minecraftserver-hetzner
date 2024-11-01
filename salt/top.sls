@@ -1,3 +1,6 @@
 base:
   'mc*':
     - minecraft
+
+  '*':
+    - debian
