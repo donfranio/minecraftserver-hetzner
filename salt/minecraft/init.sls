@@ -34,7 +34,7 @@ java-shell-profile:
     - require:
       - archive: java
 
-minecraft-systemd-file:
+minecraft-systemdsrv-file:
   file.managed:
     - name: /etc/systemd/system/minecraft.service
     - contents: |
@@ -43,12 +43,35 @@ minecraft-systemd-file:
         After=network.target
 
         [Service]
+        Sockets=minecraft.socket
+        StandardInput=socket
+        StandardOutput=journal
+        StandardError=journal
+
         WorkingDirectory=/mnt/minecraft
         ExecStart=/usr/lib/jvm/jdk-23/bin/java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.1.jar nogui
-        #ExecStop=/opt/minecraft/tools/mcrcon/mcrcon -H 127.0.0.1 -P 25575 -p strong-password stop
+        ExecStop=/bin/echo stop > /var/run/minecraft/systemd.stdin
 
         [Install]
         WantedBy=multi-user.target
+    - user: root
+    - group: root
+    - mode: 644
+
+minecraft-systemdsock-file:
+  file.managed:
+    - name: /etc/systemd/system/minecraft.socket
+    - contents: |
+        [Unit]
+        BindsTo=minecraft.service
+
+        [Socket]
+        ListenFIFO=/var/run/minecraft/systemd.stdin
+        Service=minecraft.service
+        SocketUser=root
+        SocketGroup=root
+        RemoveOnStop=true
+        SocketMode=0600
     - user: root
     - group: root
     - mode: 644
