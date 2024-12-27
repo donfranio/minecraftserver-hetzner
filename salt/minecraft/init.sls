@@ -49,7 +49,7 @@ minecraft-systemdsrv-file:
         StandardError=journal
 
         WorkingDirectory=/mnt/minecraft
-        ExecStart=/usr/lib/jvm/jdk-23/bin/java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.1.jar nogui
+        ExecStart=/usr/lib/jvm/jdk-23/bin/java -Xmx2G -Xms2G -jar minecraft_server.jar nogui
         ExecStop=/bin/echo stop > /var/run/minecraft/systemd.stdin
 
         [Install]

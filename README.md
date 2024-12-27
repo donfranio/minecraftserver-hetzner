@@ -43,6 +43,7 @@ echo "IP ist $IP"
 ## Aussschalten
 
 ```
+ssh $IP -l root systemctl stop minecraft.service
 salt-cloud -yd mc1
 hcloud volume detach minecraftworlds
 ssh-keygen -f ~/.ssh/known_hosts -R "$IP"
