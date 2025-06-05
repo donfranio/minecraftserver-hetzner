@@ -11,3 +11,7 @@ fail2ban-conf:
         DEFAULT:
           backend: systemd
     - name: /etc/fail2ban/jail.d/defaults-debian.conf
+
+fail2ban:
+  service.running:
+    - enable: True

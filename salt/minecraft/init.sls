@@ -18,7 +18,7 @@ java:
   archive.extracted:
     - name: /usr/lib/jvm
     - source: https://download.java.net/java/GA/jdk23/3c5b90190c68498b986a97f276efd28a/37/GPL/openjdk-23_linux-x64_bin.tar.gz
-    - source_hash: https://download.java.net/java/GA/jdk23/3c5b90190c68498b986a97f276efd28a/37/GPL/openjdk-23_linux-x64_bin.tar.gz.sha256
+    - source_hash: 08fea92724127c6fa0f2e5ea0b07ff4951ccb1e2f22db3c21eebbd7347152a67
     - require:
       - file: jvm-folder
 
